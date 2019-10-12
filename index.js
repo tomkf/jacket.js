@@ -4,6 +4,8 @@ const port = 3000;
 const fs = require("fs");
 const http = require("http");
 var request = require("request");
+// docs: https://www.npmjs.com/package/request
+
 const config = require("./config.js").token;
 
 // app.use(express.static("views"));
@@ -23,13 +25,19 @@ const config = require("./config.js").token;
 //     socket.emit("agentRemove");
 //   });
 
-const apiCall = `http://api.openweathermap.org/data/2.5/forecast?id=6173331&APPID=${config}`;
+const apiCall = `http://api.openweathermap.org/data/2.5/weather?id=6173331&APPID=${config}`;
+
+let results = {};
 
 request(apiCall, function(error, response, body) {
   console.log("error:", error); // Print the error if one occurred
   console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-  console.log("body:", body); // Print the HTML for the Google homepage.
+  console.log("body:", body.weather); // Print the HTML for the Google homepage.
+  //   results = body["weather"];
+  console.log(body.weather);
 });
+
+const findMyRain = apiResult => {};
 
 // const cityMap = fs.readFileSync("city.list.json");
 // let workingVar = JSON.parse(cityMap);
