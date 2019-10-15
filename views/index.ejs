@@ -6,18 +6,12 @@
 </head>
 
 <body>
-
-<form class="loaction-form" action="GET">
-
-Enter your location:<br>
-<input type="text" name="location"><br>
-
-Enter your destination:<br>
-<input type="text" name="destination"><br>
-
-<input type="submit" value="Submit">
-</form>
-
+ <div class="wrap"> 
+    <% if (rainValue == true) { %>
+    <h1 class="content"> YES </h1>
+    <%  } else  { %>
+    <h1 class="content"> NO </h1>
+    <%  } %>
+ </div>
 </body>
-
 </html>
