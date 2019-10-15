@@ -27,26 +27,22 @@ const config = require("./config.js").token;
 
 const apiCall = `http://api.openweathermap.org/data/2.5/weather?id=6173331&APPID=${config}`;
 
-let results = {};
+let results = null;
+let rainValue = false;
 
 request(apiCall, function(error, response, body) {
   console.log("error:", error); // Print the error if one occurred
-  console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
-  console.log("body:", body.weather); // Print the HTML for the Google homepage.
-  //   results = body["weather"];
-  console.log(body.weather);
+  responce = JSON.parse(body);
+  results = responce.weather[0];
+  findMyRain(results);
 });
 
-const findMyRain = apiResult => {};
-
-// const cityMap = fs.readFileSync("city.list.json");
-// let workingVar = JSON.parse(cityMap);
-
-// for (let i = 0; i < workingVar.length; i++) {
-//   if (workingVar[i].name == "Vancouver") {
-//     return console.log(workingVar[i]);
-//   }
-// }
+const findMyRain = apiResult => {
+  console.log("this is a calllback", apiResult);
+  let rainRegEx = RegExp("w*rain|Rainw*");
+  console.log(rainRegEx.test(apiResult.main));
+  console.log(rainRegEx.test(apiResult.description));
+};
 
 // { id: 6173331,
 //     name: 'Vancouver',
