@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 3000;
-const fs = require("fs");
-const http = require("http");
 var request = require("request");
 // docs: https://www.npmjs.com/package/request
 
@@ -31,7 +29,7 @@ const findMyRain = apiResult => {
 app.use(express.static("views"));
 app.use(express.static("styles"));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get("/", (req, res) => {
   let template = {
